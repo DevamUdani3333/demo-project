@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.http.get<any[]>('/api/weatherforecast')
+    this.http.get<any[]>('http://backend/api/weatherforecast')
       .subscribe(data => {
         this.forecasts = data;
       });

@@ -1,16 +1,27 @@
-version: '3.8'
+#version: '3.8'
 
 services:
   backend:
     build:
-      context: ./backend
-    ports:
-      - "5000:80"
+      context: ./backend/DemoApi
+      dockerfile: Dockerfile
+    # ports:
+    #   - "5000:80"
+    networks:
+      - app-network
 
   frontend:
     build:
       context: ./frontend
-    ports:
-      - "4200:80"
+      dockerfile: Dockerfile
     depends_on:
       - backend
+    ports:
+      - "4200:80"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+# This docker-compose file sets up a multi-container application with a backend and frontend service.
